@@ -1,0 +1,220 @@
+```{r}
+PRdata<- read.csv("/Users/Ruifu/Desktop/PRanalysis/PRdata.csv",header=T,fileEncoding="latin1")
+PRdata<- PRdata[ which(PRdata$age >= 18),]
+```
+
+
+Age,mean(n,SD),y
+```{r}
+mean(PRdata$age)
+boxplot(PRdata$age)
+
+PRdata1824<- PRdata[ which(PRdata$age >= 18 & PRdata$age<=24),]
+mean(PRdata1824$age)
+length(PRdata1824$age)
+sd(PRdata1824$age)
+
+PRdata2534<- PRdata[ which(PRdata$age >=25 & PRdata$age<=34),]
+mean(PRdata2534$age)
+length(PRdata2534$age)
+sd(PRdata2534$age)
+
+PRdata3544<- PRdata[ which(PRdata$age >=35 & PRdata$age<=44),]
+mean(PRdata3544$age)
+length(PRdata3544$age)
+sd(PRdata3544$age)
+
+PRdata45<- PRdata[ which(PRdata$age >=45),]
+mean(PRdata45$age)
+length(PRdata45$age)
+sd(PRdata45$age)
+
+length(PRdata$age)-5-17-22-15
+```
+
+
+Gender
+```{r}
+PRdatamale<- PRdata[ which(PRdata$gender..1.male..2.female==1), ]
+length(PRdatamale$gender..1.male..2.female)
+PRdatafemale<- PRdata[ which(PRdata$gender..1.male..2.female==2), ]
+length(PRdatafemale$gender..1.male..2.female)
+length(PRdata$gender..1.male..2.female)
+4/59
+41/59
+(59-4-41)/59
+```
+
+Race
+```{r}
+PRdataAA<- PRdata[ which(PRdata$ethnicity..AA..H..W..C.=="AA"), ]
+length(PRdataAA$ethnicity..AA..H..W..C.)
+6/59
+PRdataOther<- PRdata[ which(PRdata$ethnicity..AA..H..W..C.=="OTHER"), ]
+length(PRdataOther$ethnicity..AA..H..W..C.)
+
+PRdataHE<- PRdata[ which(PRdata$ethnicity..AA..H..W..C.=="H" & PRdata$primary.language.is.English..1.yes..2.no.==1), ]
+length(PRdataHE$ethnicity..AA..H..W..C.)
+17/59
+PRdataHNE<- PRdata[ which(PRdata$ethnicity..AA..H..W..C.=="H" & PRdata$primary.language.is.English..1.yes..2.no.==2), ]
+length(PRdataHNE$ethnicity..AA..H..W..C.)
+35/59
+(59-6-17-35)/59
+```
+
+Insurance
+```{r}
+length(PRdata$Has.health.insurance..1.yes..2.no.)
+PRdataYI<- PRdata[ which(PRdata$Has.health.insurance..1.yes..2.no.==1), ]
+length(PRdataYI$Has.health.insurance..1.yes..2.no.)
+42/59
+PRdataNI<- PRdata[ which(PRdata$Has.health.insurance..1.yes..2.no.==2), ]
+length(PRdataNI$Has.health.insurance..1.yes..2.no.)
+15/59
+(59-42-15)/59
+```
+
+Medical Information
+```{r}
+length(PRdata$when.I.have.a.medical.question.first.I.ask)
+PRdataDOCTOR<- PRdata[ which(PRdata$when.I.have.a.medical.question.first.I.ask=="DOCTOR"), ]
+length(PRdataDOCTOR$when.I.have.a.medical.question.first.I.ask)
+51/59
+PRdataLP<- PRdata[ which(PRdata$when.I.have.a.medical.question.first.I.ask=="LOCAL PHAR"), ]
+length(PRdataLP$when.I.have.a.medical.question.first.I.ask)
+1/59
+PRdataNURSE<- PRdata[ which(PRdata$when.I.have.a.medical.question.first.I.ask=="NURSE"), ]
+length(PRdataNURSE$when.I.have.a.medical.question.first.I.ask)
+
+PRdataUC<- PRdata[ which(PRdata$when.I.have.a.medical.question.first.I.ask=="URGENT CARE"), ]
+length(PRdataUC$when.I.have.a.medical.question.first.I.ask)
+3/59
+PRdata0<- PRdata[ which(PRdata$when.I.have.a.medical.question.first.I.ask==0), ]
+length(PRdata0$when.I.have.a.medical.question.first.I.ask)
+(59-51-1-3-1)/59
+```
+
+Chronic
+```{r}
+PRdataCY<- PRdata[ which(PRdata$has.a.disease.that.requires.him.to.take.medicine.every.day.1.yes..2.no.==1), ]
+length(PRdataCY$has.a.disease.that.requires.him.to.take.medicine.every.day.1.yes..2.no.)
+20/59
+PRdataCN<- PRdata[ which(PRdata$has.a.disease.that.requires.him.to.take.medicine.every.day.1.yes..2.no.==2), ]
+length(PRdataCN$has.a.disease.that.requires.him.to.take.medicine.every.day.1.yes..2.no.)
+39/59
+
+PRdataDiabetes<- PRdata[ which(PRdata$diseases %in% c("diabetes")), ]
+length(PRdataDiabetes$diseases)
+4/59
+PRdataHBP<-PRdata[ which(PRdata$diseases %in% c("blood pressure")), ]
+length(PRdataHBP$diseases)
+1/59
+PRdataSeizures<-PRdata[ which(PRdata$diseases %in% c("seizures")), ]
+length(PRdataSeizures$diseases)
+1/59
+PRdataSCD<-PRdata[ which(PRdata$diseases %in% c("sickle cell disease")), ]
+length(PRdataSCD$diseases)
+1/59
+PRdataHead<-PRdata[ which(PRdata$diseases %in% c("headache")), ]
+length(PRdataHead$diseases)
+1/59
+PRdataDepression<-PRdata[ which(PRdata$diseases %in% c("depression")), ]
+length(PRdataDepression$diseases)
+1/59
+```
+
+History of vaccination at the pharmacy
+```{r}
+PRdataVHY<- PRdata[ which(PRdata$I.have.received.vaccine.at.local.pharmacy.1.yes..2.no==1), ]
+length(PRdataVHY$I.have.received.vaccine.at.local.pharmacy.1.yes..2.no)
+37/59
+PRdataVHN<- PRdata[ which(PRdata$I.have.received.vaccine.at.local.pharmacy.1.yes..2.no==2), ]
+length(PRdataVHN$I.have.received.vaccine.at.local.pharmacy.1.yes..2.no)
+20/59
+2/59
+```
+
+If you have diabetes, have you received diabetes counseling  at pharmacy
+```{r}
+PRdataDCPY<- PRdata[ which(PRdata$If.you.have.diabetes..have.you.received.diabetes.counseling..at.pharmacy.1.yes..2..no == 1), ]
+length(PRdataDCPY$If.you.have.diabetes..have.you.received.diabetes.counseling..at.pharmacy.1.yes..2..no)
+7/59
+PRdataDCPN<- PRdata[ which(PRdata$If.you.have.diabetes..have.you.received.diabetes.counseling..at.pharmacy.1.yes..2..no == 2), ]
+length(PRdataDCPN$If.you.have.diabetes..have.you.received.diabetes.counseling..at.pharmacy.1.yes..2..no)
+15/59
+(59-7-15)/59
+```
+
+I have received medical care at the clinic in pharmacy
+```{r}
+PRdataMCPY<- PRdata[ which(PRdata$I.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no==1), ]
+length(PRdataMCPY$I.have.received.medical.care.at.the.clinic.in.pharmacy)
+17/59
+PRdataMCPN<- PRdata[ which(PRdata$I.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no==2), ]
+length(PRdataMCPN$I.have.received.medical.care.at.the.clinic.in.pharmacy)
+41/59
+(59-17-41)/59
+```
+
+I have received training on how to use a glucometer or inhaler at pharmacy
+```{r}
+PRdataRTY<- PRdata[ which(PRdata$I.have.received.training.on.how.to.use.a.glucometer.or.inhaler.at.pharmacy..1.yes..2.no == 1), ]
+length(PRdataRTY$I.have.received.training.on.how.to.use.a.glucometer.or.inhaler.at.pharmacy..1.yes..2.no)
+10/59
+PRdataRTN<- PRdata[ which(PRdata$I.have.received.training.on.how.to.use.a.glucometer.or.inhaler.at.pharmacy..1.yes..2.no == 2), ]
+length(PRdataRTN$I.have.received.training.on.how.to.use.a.glucometer.or.inhaler.at.pharmacy..1.yes..2.no)
+42/59
+(59-10-42)/59
+```
+
+I know that the pharmacist talks to my doctors and nurses to prevent drug related adverse events
+```{r}
+PRdataKPY<- PRdata[ which(PRdata$I.know.that.the.pharmacist.talks.to.my.doctors.and.nurses.to.prevent.drug.related.adverse.events.1.yes..2.no == 1), ]
+length(PRdataKPY$I.know.that.the.pharmacist.talks.to.my.doctors.and.nurses.to.prevent.drug.related.adverse.events.1.yes..2.no)
+48/59
+PRdataKPN<- PRdata[ which(PRdata$I.know.that.the.pharmacist.talks.to.my.doctors.and.nurses.to.prevent.drug.related.adverse.events.1.yes..2.no == 2), ]
+length(PRdataKPN$I.know.that.the.pharmacist.talks.to.my.doctors.and.nurses.to.prevent.drug.related.adverse.events.1.yes..2.no)
+9/59
+(59-48-9)/59
+```
+
+I don’t have a disease but I have received counseling at a pharmacy because my family member has a disease
+```{r}
+PRdataDRY<- PRdata[ which(PRdata$I.don..t.have.a.disease.but.I.have.received.counseling.at.a.pharmacy.because.my.family.member.has.a.disease.1.yes..2.no == 1), ]
+length(PRdataDRY$I.don..t.have.a.disease.but.I.have.received.counseling.at.a.pharmacy.because.my.family.member.has.a.disease.1.yes..2.no)
+27/59
+PRdataDRN<- PRdata[ which(PRdata$I.don..t.have.a.disease.but.I.have.received.counseling.at.a.pharmacy.because.my.family.member.has.a.disease.1.yes..2.no == 2), ]
+length(PRdataDRN$I.don..t.have.a.disease.but.I.have.received.counseling.at.a.pharmacy.because.my.family.member.has.a.disease.1.yes..2.no)
+27/59
+(59-27-27)/59
+```
+
+
+
+# Analysis
+```{r}
+PRdata<- read.csv("/Users/Ruifu/Desktop/PRanalysis/PRdata.csv",header=T,fileEncoding="latin1")
+PRdata<- PRdata[ which(PRdata$age >= 18),]
+# delete data with blank in R column
+PRdata<- PRdata[ which(PRdata$I.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no !=0), ]
+# change 2 to 0 in R column for logistic regression
+PRdata$I.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no[PRdata$I.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no == 2]<-0
+```
+Full Model
+```{r}
+FM<- glm(I.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no ~
+           as.factor(gender..1.male..2.female)+
+           age+
+           as.factor(primary.language.is.English..1.yes..2.no.)+
+           factor(Has.health.insurance..1.yes..2.no.)+
+           as.factor(has.a.disease.that.requires.him.to.take.medicine.every.day.1.yes..2.no.)+
+           as.factor(diseases)+
+           as.factor(when.I.have.a.medical.question.first.I.ask)+
+           as.array(I.have.received.vaccine.at.local.pharmacy.1.yes..2.no)+
+           as.factor(If.you.have.diabetes..have.you.received.diabetes.counseling..at.pharmacy.1.yes..2..no)+
+           as.factor(I.have.not.received.medical.care.at.the.clinic.in.pharmacy.because)+
+           as.factor(I.have.received.training.on.how.to.use.a.glucometer.or.inhaler.at.pharmacy..1.yes..2.no)+
+           as.factor(I.don..t.have.a.disease.but.I.have.received.counseling.at.a.pharmacy.because.my.family.member.has.a.disease.1.yes..2.no)
+         ,data = PRdata)
+summary(FM)
+```
