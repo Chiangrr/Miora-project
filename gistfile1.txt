@@ -218,3 +218,120 @@ FM<- glm(I.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no ~
          ,data = PRdata)
 summary(FM)
 ```
+
+Effect based on English being a primary language
+```{r}
+EBPLY<- PRdata[ which(PRdata$primary.language.is.English..1.yes..2.no.==1), ]
+l<- sapply(EBPLY,function(x)is.factor(x))
+m<- EBPLY[,names(which(l=="TRUE"))]
+ifelse(n<-sapply(m,function(x)length(levels(x)))==1,"DROP","NODROP")
+
+MEBPLY<- glm(as.numeric(I.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no) ~
+           age+
+           as.factor(diseases)+
+           as.factor(when.I.have.a.medical.question.first.I.ask)
+         ,data = EBPLY)
+summary(MEBPLY)
+```
+Effect based on English not being a primary language
+```{r}
+EBPLN<- PRdata[ which(PRdata$primary.language.is.English..1.yes..2.no.==2), ]
+l<- sapply(EBPLN,function(x)is.factor(x))
+m<- EBPLN[,names(which(l=="TRUE"))]
+ifelse(n<-sapply(m,function(x)length(levels(x)))==1,"DROP","NODROP")
+
+MEBPLN<- glm(aI.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no ~
+           age+
+           as.factor(diseases)+
+           as.factor(when.I.have.a.medical.question.first.I.ask)
+         ,data = EBPLN)
+summary(MEBPLN)
+```
+
+Effect based on bing younger(less than 30y)
+```{r}
+BY<- PRdata[ which(PRdata$age<30), ]
+l<- sapply(BY,function(x)is.factor(x))
+m<- BY[,names(which(l=="TRUE"))]
+ifelse(n<-sapply(m,function(x)length(levels(x)))==1,"DROP","NODROP")
+MBY<- glm(I.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no ~
+           age+
+           as.factor(diseases)+
+           as.factor(when.I.have.a.medical.question.first.I.ask)
+         ,data = BY)
+summary(MBY)
+```
+
+Effect based on bing older(39years and older)
+```{r}
+BO<- PRdata[ which(PRdata$age>-39), ]
+l<- sapply(BO,function(x)is.factor(x))
+m<- BO[,names(which(l=="TRUE"))]
+ifelse(n<-sapply(m,function(x)length(levels(x)))==1,"DROP","NODROP")
+MBO<- glm(I.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no ~
+           age+
+           as.factor(diseases)+
+           as.factor(when.I.have.a.medical.question.first.I.ask)
+         ,data = BO)
+summary(MBO)
+```
+
+
+Effect based on getting vaccine at the pharmacy
+```{r}
+GVAP<- PRdata[ which(PRdata$I.have.received.vaccine.at.local.pharmacy.1.yes..2.no==1), ]
+l<- sapply(GVAP,function(x)is.factor(x))
+m<- GVAP[,names(which(l=="TRUE"))]
+ifelse(n<-sapply(m,function(x)length(levels(x)))==1,"DROP","NODROP")
+MGVAP<- glm(I.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no ~
+           age+
+           as.factor(diseases)+
+           as.factor(when.I.have.a.medical.question.first.I.ask)
+         ,data = GVAP)
+summary(MGVAP)
+```
+
+Effect based on getting training/education at the pharmacy
+```{r}
+GTEAP<-PRdata[ which(PRdata$I.have.not.received.training.on.how.to.use.a.glucometer.or.inhaler.at.pharmacy.because==1 ), ]
+l<- sapply(GTEAP,function(x)is.factor(x))
+m<- GTEAP[,names(which(l=="TRUE"))]
+ifelse(n<-sapply(m,function(x)length(levels(x)))==1,"DROP","NODROP")
+MGTEAP<- glm(I.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no ~
+           age+
+           as.factor(diseases)+
+           as.factor(when.I.have.a.medical.question.first.I.ask)
+         ,data = GTEAP)
+summary(MGTEAP)
+```
+
+Effect on family getting educated in pharmacy
+```{r}
+FGEP<- PRdata[ which(PRdata$I.don..t.have.a.disease.but.I.have.received.counseling.at.a.pharmacy.because.my.family.member.has.a.disease.1.yes..2.no==1), ]
+l<- sapply(FGEP,function(x)is.factor(x))
+m<- FGEP[,names(which(l=="TRUE"))]
+ifelse(n<-sapply(m,function(x)length(levels(x)))==1,"DROP","NODROP")
+MFGEP<- glm(I.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no ~
+           age+
+           as.factor(diseases)+
+           as.factor(when.I.have.a.medical.question.first.I.ask)
+         ,data = FGEP)
+summary(MFGEP)
+```
+
+Effect on family not getting educated in pharmacy
+```{r}
+FNGEP<- PRdata[ which(PRdata$I.don..t.have.a.disease.but.I.have.received.counseling.at.a.pharmacy.because.my.family.member.has.a.disease.1.yes..2.no==1), ]
+l<- sapply(FNGEP,function(x)is.factor(x))
+m<- FNGEP[,names(which(l=="TRUE"))]
+ifelse(n<-sapply(m,function(x)length(levels(x)))==1,"DROP","NODROP")
+MFNGEP<- glm(I.have.received.medical.care.at.the.clinic.in.pharmacy.1.yes..2.no ~
+           age+
+           as.factor(diseases)+
+           as.factor(when.I.have.a.medical.question.first.I.ask)
+         ,data = FNGEP)
+summary(MFNGEP)
+
+```
+
+
